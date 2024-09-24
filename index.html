@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zehr Productions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        #main-content {
+            display: none;
+        }
+
+        .container {
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="password-screen">
+        <div class="container">
+            <h1>Zehr Productions</h1>
+            <p>Please enter the password to access the site:</p>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <br>
+            <button onclick="checkPassword()">Submit</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="container">
+            <h1>Welcome to Zehr Productions</h1>
+            <p>We create unique visual experiences for our clients. Explore our work below!</p>
+            <!-- Add your videos, images, and content here -->
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('password-input').value;
+            if (password === "zehr123") { // You can change this password
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>
