@@ -17,6 +17,62 @@
             background-position: center;
         }
 
+        /* Hide main content initially */
+        #main-content {
+            display: none;
+        }
+
+        /* Password Screen Styling */
+        #password-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #39ff14; /* Neon green */
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
         /* Navigation Bar */
         .navbar {
             background-color: rgba(0, 0, 0, 0.8);
@@ -40,7 +96,8 @@
             color: #39ff14; /* Neon green color */
         }
 
-        h1 {
+        /* Landing Page Title */
+        #main-content h1 {
             font-size: 3rem;
             margin-top: 20vh;
             font-family: 'Courier New', Courier, monospace;
@@ -50,20 +107,42 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <a href="features.html">Features</a>
-        <a href="shorts.html">Shorts</a>
-        <a href="shop.html">Shop</a>
-        <a href="radio.html">Radio</a>
-        <a href="events.html">Events</a>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="container">
+            <h1>Zehr Productions</h1>
+            <p>Please enter the password to access the site:</p>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <br>
+            <button onclick="checkPassword()">Submit</button>
+        </div>
     </div>
 
-    <!-- Landing Page Title -->
-    <h1>Zehr Productions</h1>
+    <!-- Main Content (Hidden until correct password is entered) -->
+    <div id="main-content">
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <a href="features.html">Features</a>
+            <a href="shorts.html">Shorts</a>
+            <a href="shop.html">Shop</a>
+            <a href="radio.html">Radio</a>
+            <a href="events.html">Events</a>
+        </div>
+
+        <!-- Landing Page Title -->
+        <h1>Welcome to Zehr Productions</h1>
+    </div>
 
     <script>
-        // Password functionality can stay the same if needed
+        function checkPassword() {
+            var password = document.getElementById('password-input').value;
+            if (password === "zehr123") { // Change this to your desired password
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
     </script>
 </body>
 </html>
