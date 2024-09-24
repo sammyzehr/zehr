@@ -7,15 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #111;
+            background-color: #000;
             color: #fff;
-            margin: 0;
             text-align: center;
+            margin: 0;
+            height: 100vh;
+            background-image: url('https://example.com/snakes-background.jpg'); /* Replace with your snake image URL */
+            background-size: cover;
+            background-position: center;
         }
 
         /* Navigation Bar */
         .navbar {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 15px;
             display: flex;
             justify-content: center;
@@ -23,162 +27,43 @@
 
         .navbar a {
             margin: 0 15px;
-            color: white;
+            color: #fff;
             text-decoration: none;
-            font-size: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-size: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
 
         .navbar a:hover {
-            color: #007BFF;
-        }
-
-        .navbar img {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 5px;
-        }
-
-        /* Content Styles */
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
+            color: #39ff14; /* Neon green color */
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        p {
-            font-size: 1.2rem;
-            line-height: 1.5;
-        }
-
-        #main-content {
-            display: none;
-        }
-
-        input[type="password"] {
-            padding: 10px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        #features, #shorts, #shop, #radio, #events {
-            border-top: 2px solid #444;
-            margin-top: 20px;
+            font-size: 3rem;
+            margin-top: 20vh;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
         }
     </style>
 </head>
 <body>
 
-    <div id="password-screen">
-        <div class="container">
-            <h1>Zehr Productions</h1>
-            <p>Please enter the password to access the site:</p>
-            <input type="password" id="password-input" placeholder="Enter password">
-            <br>
-            <button onclick="checkPassword()">Submit</button>
-        </div>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="features.html">Features</a>
+        <a href="shorts.html">Shorts</a>
+        <a href="shop.html">Shop</a>
+        <a href="radio.html">Radio</a>
+        <a href="events.html">Events</a>
     </div>
 
-    <div id="main-content">
-        <!-- Navigation Bar -->
-        <div class="navbar">
-            <a href="#features">
-                <img src="https://via.placeholder.com/40" alt="Features">
-                Features
-            </a>
-            <a href="#shorts">
-                <img src="https://via.placeholder.com/40" alt="Shorts">
-                Shorts
-            </a>
-            <a href="#shop">
-                <img src="https://via.placeholder.com/40" alt="Shop">
-                Shop
-            </a>
-            <a href="#radio">
-                <img src="https://via.placeholder.com/40" alt="Radio">
-                Radio
-            </a>
-            <a href="#events">
-                <img src="https://via.placeholder.com/40" alt="Events">
-                Events
-            </a>
-        </div>
-
-        <!-- Sections -->
-        <div class="container">
-            <h1>Welcome to Zehr Productions</h1>
-            <p>We create unique visual experiences for our clients. Explore our work below!</p>
-
-            <!-- Features Section -->
-            <section id="features">
-                <h2>Features</h2>
-                <p>This is where you will showcase feature films or major projects.</p>
-            </section>
-
-            <!-- Shorts Section -->
-            <section id="shorts">
-                <h2>Shorts</h2>
-                <p>This section will feature short films or brief projects.</p>
-            </section>
-
-            <!-- Shop Section -->
-            <section id="shop">
-                <h2>Shop</h2>
-                <p>Here, users can browse and purchase items related to your production company.</p>
-            </section>
-
-            <!-- Radio Section -->
-            <section id="radio">
-                <h2>Radio</h2>
-                <p>This section is for your podcasts, radio shows, or audio content.</p>
-            </section>
-
-            <!-- Events Section -->
-            <section id="events">
-                <h2>Events</h2>
-                <p>List upcoming or past events hosted by your production company.</p>
-            </section>
-        </div>
-    </div>
+    <!-- Landing Page Title -->
+    <h1>Zehr Productions</h1>
 
     <script>
-        function checkPassword() {
-            var password = document.getElementById('password-input').value;
-            if (password === "zehr123") { // You can change this password
-                document.getElementById('password-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            } else {
-                alert("Incorrect password. Please try again.");
-            }
-        }
+        // Password functionality can stay the same if needed
     </script>
 </body>
 </html>
