@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zehr</title>
+    <title>Zehr Productions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,9 +45,7 @@
 
         .container {
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 30px;
-            border-radius: 10px;
+            padding: 30px; /* Removed background-color */
         }
 
         h1 {
@@ -85,30 +83,6 @@
         button:hover {
             background-color: #0056b3;
         }
-
-        /* Navigation Bar Styling */
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar a {
-            margin: 0 15px;
-            color: #39ff14; /* Neon green color */
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-family: 'Courier New', Courier, monospace;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .navbar a:hover {
-            color: #ff1493; /* Neon pink on hover */
-        }
-
     </style>
 </head>
 <body>
@@ -122,7 +96,7 @@
     <!-- Password Screen -->
     <div id="password-screen">
         <div class="container">
-            <h1>Zehr</h1>
+            <h1>Zehr Productions</h1>
             <p>Please enter the password to access the site:</p>
             <input type="password" id="password-input" placeholder="Enter password">
             <br>
@@ -156,10 +130,10 @@
             <a href="shop.html">Shop</a>
             <a href="radio.html">Radio</a>
             <a href="events.html">Events</a>
-            <a href="fashion.html">Fashion</a> <!-- New Fashion Link -->
+            <a href="fashion.html">Fashion</a>
         </div>
 
-        <h1>Zehr</h1>
+        <h1>Zehr Productions</h1>
     </div>
 
     <script>
@@ -170,7 +144,6 @@
                 document.getElementById('password-screen').style.display = 'none';
                 document.getElementById('correct-video').style.display = 'block';
 
-                // Play the correct video, then redirect to homepage
                 var correctVideo = document.getElementById('correctVideo');
                 correctVideo.play();
                 correctVideo.onended = function() {
@@ -182,7 +155,6 @@
                 document.getElementById('password-screen').style.display = 'none';
                 document.getElementById('incorrect-video').style.display = 'block';
 
-                // Play the incorrect video, then return to the password screen
                 var incorrectVideo = document.getElementById('incorrectVideo');
                 incorrectVideo.play();
                 incorrectVideo.onended = function() {
