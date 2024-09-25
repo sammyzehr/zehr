@@ -97,7 +97,7 @@
     <!-- Password Screen -->
     <div id="password-screen">
         <div class="container">
-            <h1>Zehr</h1> <!-- Kept 'Zehr' as requested -->
+            <h1>Zehr</h1>
             <p>Please enter the password to access the site:</p>
             <input type="password" id="password-input" placeholder="Enter password">
             <br>
@@ -126,7 +126,14 @@
             var password = document.getElementById('password-input').value;
 
             if (password === "1") { // Correct password case
-                window.location.href = "home.html"; // Redirect to the renamed main homepage
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('correct-video').style.display = 'block';
+
+                var correctVideo = document.getElementById('correctVideo');
+                correctVideo.play();
+                correctVideo.onended = function() {
+                    window.location.href = "home.html"; // Redirect to main homepage after correct video
+                };
             } else { // Incorrect password case
                 document.getElementById('password-screen').style.display = 'none';
                 document.getElementById('incorrect-video').style.display = 'block';
