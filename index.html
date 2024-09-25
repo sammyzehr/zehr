@@ -15,10 +15,6 @@
             overflow: hidden;
         }
 
-        #password-screen, #main-content, #correct-video, #incorrect-video {
-            display: none;
-        }
-
         /* Fullscreen video styling */
         video.fullscreen-video {
             position: absolute;
@@ -28,60 +24,6 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-        }
-
-        /* Password Screen Styling */
-        #password-screen {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1;
-        }
-
-        .container {
-            text-align: center;
-            padding: 30px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-family: 'Courier New', Courier, monospace;
-            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
-        }
-
-        p {
-            font-size: 1.2rem;
-        }
-
-        input[type="password"] {
-            padding: 10px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            background-color: #333;
-            color: #fff;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            background-color: #39ff14;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #0056b3;
         }
 
         /* Navigation Bar Styling */
@@ -106,87 +48,35 @@
         .navbar a:hover {
             color: #ff1493; /* Neon pink on hover */
         }
+
+        h1 {
+            font-size: 3rem;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Background video that plays while on the password screen -->
+    <!-- Background video that plays while on the homepage -->
     <video id="background-video" class="fullscreen-video" autoplay loop muted>
         <source src="background-loop.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Password Screen -->
-    <div id="password-screen">
-        <div class="container">
-            <h1>Zehr</h1> <!-- Updated to "Zehr" -->
-            <p>Please enter the password to access the site:</p>
-            <input type="password" id="password-input" placeholder="Enter password">
-            <br>
-            <button onclick="checkPassword()">Submit</button>
-        </div>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html">Home</a> <!-- Points to this main homepage -->
+        <a href="features.html">Features</a>
+        <a href="shorts.html">Shorts</a>
+        <a href="shop.html">Shop</a>
+        <a href="radio.html">Radio</a>
+        <a href="events.html">Events</a>
+        <a href="fashion.html">Fashion</a>
     </div>
 
-    <!-- Correct Password Video (Full-Screen) -->
-    <div id="correct-video">
-        <video id="correctVideo" class="fullscreen-video" autoplay>
-            <source src="correct-password.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <!-- Incorrect Password Video (Full-Screen) -->
-    <div id="incorrect-video">
-        <video id="incorrectVideo" class="fullscreen-video" autoplay>
-            <source src="incorrect-password.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <!-- Main Content (Homepage) -->
-    <div id="main-content">
-        <!-- Navigation Bar -->
-        <div class="navbar">
-            <a href="index.html">Home</a> <!-- Make sure this points to the post-password home page -->
-            <a href="features.html">Features</a>
-            <a href="shorts.html">Shorts</a>
-            <a href="shop.html">Shop</a>
-            <a href="radio.html">Radio</a>
-            <a href="events.html">Events</a>
-            <a href="fashion.html">Fashion</a>
-        </div>
-
-        <h1>Zehr</h1> <!-- Updated to "Zehr" -->
-    </div>
-
-    <script>
-        function checkPassword() {
-            var password = document.getElementById('password-input').value;
-
-            if (password === "1") { // Correct password case
-                document.getElementById('password-screen').style.display = 'none';
-                document.getElementById('correct-video').style.display = 'block';
-
-                var correctVideo = document.getElementById('correctVideo');
-                correctVideo.play();
-                correctVideo.onended = function() {
-                    document.getElementById('correct-video').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                };
-
-            } else { // Incorrect password case
-                document.getElementById('password-screen').style.display = 'none';
-                document.getElementById('incorrect-video').style.display = 'block';
-
-                var incorrectVideo = document.getElementById('incorrectVideo');
-                incorrectVideo.play();
-                incorrectVideo.onended = function() {
-                    document.getElementById('incorrect-video').style.display = 'none';
-                    document.getElementById('password-screen').style.display = 'block';
-                };
-            }
-        }
-    </script>
+    <h1>Zehr</h1> <!-- Kept as 'Zehr' as requested -->
 
 </body>
 </html>
