@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zehr</title>
+    <title>Password - Zehr</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,6 +13,10 @@
             margin: 0;
             height: 100vh;
             overflow: hidden;
+        }
+
+        #password-screen, #correct-video, #incorrect-video {
+            display: none;
         }
 
         /* Fullscreen video styling */
@@ -26,27 +30,22 @@
             z-index: -1;
         }
 
-        /* Navigation Bar Styling */
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px;
+        /* Password Screen Styling */
+        #password-screen {
             display: flex;
             justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
         }
 
-        .navbar a {
-            margin: 0 15px;
-            color: #39ff14; /* Neon green color */
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-family: 'Courier New', Courier, monospace;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .navbar a:hover {
-            color: #ff1493; /* Neon pink on hover */
+        .container {
+            text-align: center;
+            padding: 30px;
         }
 
         h1 {
@@ -55,28 +54,92 @@
             text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
         }
 
+        p {
+            font-size: 1.2rem;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #39ff14;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Background video that plays while on the homepage -->
+    <!-- Background video that plays while on the password screen -->
     <video id="background-video" class="fullscreen-video" autoplay loop muted>
         <source src="background-loop.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <a href="index.html">Home</a> <!-- Points to this main homepage -->
-        <a href="features.html">Features</a>
-        <a href="shorts.html">Shorts</a>
-        <a href="shop.html">Shop</a>
-        <a href="radio.html">Radio</a>
-        <a href="events.html">Events</a>
-        <a href="fashion.html">Fashion</a>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="container">
+            <h1>Zehr</h1> <!-- Kept 'Zehr' as requested -->
+            <p>Please enter the password to access the site:</p>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <br>
+            <button onclick="checkPassword()">Submit</button>
+        </div>
     </div>
 
-    <h1>Zehr</h1> <!-- Kept as 'Zehr' as requested -->
+    <!-- Correct Password Video (Full-Screen) -->
+    <div id="correct-video">
+        <video id="correctVideo" class="fullscreen-video" autoplay>
+            <source src="correct-password.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Incorrect Password Video (Full-Screen) -->
+    <div id="incorrect-video">
+        <video id="incorrectVideo" class="fullscreen-video" autoplay>
+            <source src="incorrect-password.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('password-input').value;
+
+            if (password === "1") { // Correct password case
+                window.location.href = "home.html"; // Redirect to the renamed main homepage
+            } else { // Incorrect password case
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('incorrect-video').style.display = 'block';
+
+                var incorrectVideo = document.getElementById('incorrectVideo');
+                incorrectVideo.play();
+                incorrectVideo.onended = function() {
+                    document.getElementById('incorrect-video').style.display = 'none';
+                    document.getElementById('password-screen').style.display = 'block';
+                };
+            }
+        }
+    </script>
 
 </body>
 </html>
