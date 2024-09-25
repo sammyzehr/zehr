@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events - Zehr Productions</title>
     <style>
         body {
@@ -11,33 +7,59 @@
             color: #fff;
             margin: 0;
             text-align: center;
-            padding: 20px;
         }
 
-        a {
-            color: #39ff14;
+        /* Navigation Bar Styling */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            margin: 0 15px;
+            color: #39ff14; /* Neon green */
             text-decoration: none;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            display: inline-block;
+            font-size: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ff1493; /* Neon pink on hover */
         }
 
         h1 {
             font-size: 2.5rem;
-            color: #39ff14; /* Neon green */
+            color: #39ff14;
             font-family: 'Courier New', Courier, monospace;
             text-shadow: 0 0 10px #39ff14;
         }
 
         p {
             font-size: 1.2rem;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
-    <h1>Events</h1>
-    <p>See all upcoming or past events hosted by Zehr Productions here.</p>
 
-    <a href="index.html">← Back to Home</a>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="shorts.html">Shorts</a>
+        <a href="shop.html">Shop</a>
+        <a href="radio.html">Radio</a>
+        <a href="events.html">Events</a>
+        <a href="fashion.html">Fashion</a> <!-- Fashion Link -->
+    </div>
+
+    <h1>Events</h1>
+    <p>This is where the events content will go.</p>
+
 </body>
 </html>
