@@ -34,7 +34,8 @@
             padding: 15px;
             display: flex;
             justify-content: center;
-            z-index: 10; /* Ensures the navbar stays above the video */
+            position: relative;
+            z-index: 1000; /* High z-index to ensure the navbar is on top */
         }
 
         .navbar a {
@@ -60,7 +61,7 @@
 
         /* Hide the menu icon and menu links by default for mobile */
         #menu-links {
-            display: none;
+            display: flex; /* Show the menu links by default on desktop */
         }
 
         /* Show the hamburger menu icon on mobile */
@@ -90,9 +91,9 @@
                 font-size: 1.2rem;
             }
 
-            /* Display the menu links when the icon is clicked */
+            /* Hide the menu links on mobile until the icon is clicked */
             #menu-links {
-                display: none; /* Initially hidden */
+                display: none; /* Hidden by default on mobile */
                 flex-direction: column;
             }
 
