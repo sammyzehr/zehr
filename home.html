@@ -13,9 +13,22 @@
             color: #fff;
             margin: 0;
             text-align: center;
+            height: 100vh;
+            overflow: hidden; /* To prevent scrollbars */
         }
 
-        /* Desktop Styles - Already Existing */
+        /* Fullscreen video styling */
+        video.fullscreen-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Ensures the video stays in the background */
+        }
+
+        /* Desktop Styles - Navbar */
         .navbar {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 15px;
@@ -36,6 +49,17 @@
 
         .navbar a:hover {
             color: #ff1493; /* Neon pink on hover */
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14; /* Neon green */
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #fff; /* Ensures paragraph text is white */
         }
 
         /* Hide the menu icon and menu links by default for mobile */
@@ -86,6 +110,12 @@
 
 <body>
 
+    <!-- Background video that plays while on the homepage -->
+    <video id="background-video" class="fullscreen-video" autoplay loop muted>
+        <source src="background-loop.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <!-- Navigation Bar with Hamburger Icon -->
     <div class="navbar">
         <!-- Hamburger icon for mobile -->
@@ -103,11 +133,11 @@
         </div>
     </div>
 
-    <!-- Add your page content here -->
+    <!-- Main content of the page -->
     <h1>Zehr</h1>
     <p>Welcome to Zehr Productions</p>
 
-    <!-- Add your JavaScript here -->
+    <!-- JavaScript to toggle the menu -->
     <script>
         function toggleMenu() {
             var menu = document.getElementById("menu-links");
