@@ -34,6 +34,7 @@
             padding: 15px;
             display: flex;
             justify-content: center;
+            z-index: 10; /* Ensures the navbar stays above the video */
         }
 
         .navbar a {
@@ -55,11 +56,6 @@
             font-size: 3rem;
             font-family: 'Courier New', Courier, monospace;
             text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14; /* Neon green */
-        }
-
-        p {
-            font-size: 1.2rem;
-            color: #fff; /* Ensures paragraph text is white */
         }
 
         /* Hide the menu icon and menu links by default for mobile */
@@ -134,8 +130,7 @@
     </div>
 
     <!-- Main content of the page -->
-    <h1>Zehr</h1>
-    <p>Welcome to Zehr Productions</p>
+    <h1>Zehr</h1> <!-- Only showing "Zehr" as requested -->
 
     <!-- JavaScript to toggle the menu -->
     <script>
