@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion - Zehr Productions</title>
+    <title>Fashion - Zehr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,19 +12,22 @@
             color: #fff;
             margin: 0;
             text-align: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* Navigation Bar Styling */
         .navbar {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 15px;
             display: flex;
             justify-content: center;
+            position: relative;
+            z-index: 1000;
         }
 
         .navbar a {
             margin: 0 15px;
-            color: #39ff14; /* Neon green */
+            color: #39ff14;
             text-decoration: none;
             font-size: 1.5rem;
             font-family: 'Courier New', Courier, monospace;
@@ -33,37 +37,83 @@
         }
 
         .navbar a:hover {
-            color: #ff1493; /* Neon pink on hover */
+            color: #ff1493;
         }
 
-        h1 {
+        .coming-soon {
+            font-family: 'Russo One', sans-serif;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
             font-size: 2.5rem;
-            color: #39ff14;
-            font-family: 'Courier New', Courier, monospace;
-            text-shadow: 0 0 10px #39ff14;
+            color: #ff1493;
+            margin: 20px 0;
         }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.5;
+        #menu-links {
+            display: flex;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            color: #39ff14;
+            display: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar a {
+                margin: 10px 0;
+                font-size: 1.2rem;
+            }
+
+            #menu-links {
+                display: none;
+                flex-direction: column;
+            }
+
+            #menu-links.show {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
     <div class="navbar">
-        <a href="home.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="shorts.html">Shorts</a>
-        <a href="shop.html">Shop</a>
-        <a href="radio.html">Radio</a>
-        <a href="events.html">Events</a>
-        <a href="fashion.html">Fashion</a> <!-- Fashion Link -->
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+        <div id="menu-links">
+            <a href="home.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="shorts.html">Shorts</a>
+            <a href="shop.html">Shop</a>
+            <a href="radio.html">Radio</a>
+            <a href="events.html">Events</a>
+            <a href="fashion.html">Fashion</a>
+        </div>
     </div>
 
-    <h1>Fashion</h1>
-    <p>This is where the fashion content will go.</p>
+    <!-- Coming Soon Tag -->
+    <div class="coming-soon">Coming Soon</div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu-links");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+    </script>
 
 </body>
 </html>
