@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zehr - Home</title>
-    
-    <!-- Add your CSS styles here -->
+    <title>Home - Zehr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,33 +13,22 @@
             margin: 0;
             text-align: center;
             height: 100vh;
-            overflow: hidden; /* To prevent scrollbars */
+            overflow: hidden;
+            transition: filter 0.3s ease; /* Smooth transition for color inversion */
         }
 
-        /* Fullscreen video styling */
-        video.fullscreen-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1; /* Ensures the video stays in the background */
-        }
-
-        /* Desktop Styles - Navbar */
         .navbar {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 15px;
             display: flex;
             justify-content: center;
             position: relative;
-            z-index: 1000; /* High z-index to ensure the navbar is on top */
+            z-index: 1000;
         }
 
         .navbar a {
             margin: 0 15px;
-            color: #39ff14; /* Neon green */
+            color: #39ff14;
             text-decoration: none;
             font-size: 1.5rem;
             font-family: 'Courier New', Courier, monospace;
@@ -50,37 +38,57 @@
         }
 
         .navbar a:hover {
-            color: #ff1493; /* Neon pink on hover */
+            color: #ff1493;
         }
 
-        h1 {
-            font-size: 3rem;
-            font-family: 'Courier New', Courier, monospace;
-            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14; /* Neon green */
+        .coming-soon {
+            font-family: 'Russo One', sans-serif;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+            font-size: 2.5rem;
+            color: #ff1493;
+            margin: 20px 0;
         }
 
-        /* Hide the menu icon and menu links by default for mobile */
         #menu-links {
-            display: flex; /* Show the menu links by default on desktop */
+            display: flex;
         }
 
-        /* Show the hamburger menu icon on mobile */
         .menu-icon {
             font-size: 2rem;
-            color: #39ff14; /* Neon green */
+            color: #39ff14;
             display: none;
             cursor: pointer;
             margin-right: 10px;
         }
 
-        /* Mobile Styles */
+        /* Invert Button */
+        .invert-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #39ff14;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 0 10px #39ff14;
+        }
+
+        .invert-button:hover {
+            background-color: #ff1493;
+            color: #fff;
+            box-shadow: 0 0 10px #ff1493;
+        }
+
         @media (max-width: 768px) {
-            /* Display the hamburger icon */
             .menu-icon {
                 display: block;
             }
 
-            /* Stack the navbar links vertically for mobile */
             .navbar {
                 flex-direction: column;
                 align-items: center;
@@ -91,34 +99,21 @@
                 font-size: 1.2rem;
             }
 
-            /* Hide the menu links on mobile until the icon is clicked */
             #menu-links {
-                display: none; /* Hidden by default on mobile */
+                display: none;
                 flex-direction: column;
             }
 
-            /* When the menu is toggled, it will display block */
             #menu-links.show {
                 display: block;
             }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- Background video that plays while on the homepage -->
-    <video id="background-video" class="fullscreen-video" autoplay loop muted>
-        <source src="background-loop.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <!-- Navigation Bar with Hamburger Icon -->
     <div class="navbar">
-        <!-- Hamburger icon for mobile -->
         <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-
-        <!-- The actual menu links -->
         <div id="menu-links">
             <a href="home.html">Home</a>
             <a href="features.html">Features</a>
@@ -130,10 +125,12 @@
         </div>
     </div>
 
-    <!-- Main content of the page -->
-    <h1>Zehr</h1> <!-- Only showing "Zehr" as requested -->
+    <!-- Coming Soon Tag -->
+    <div class="coming-soon">Coming Soon</div>
 
-    <!-- JavaScript to toggle the menu -->
+    <!-- Invert Colors Button -->
+    <button class="invert-button" onclick="toggleInvert()">Invert Colors</button>
+
     <script>
         function toggleMenu() {
             var menu = document.getElementById("menu-links");
@@ -141,6 +138,16 @@
                 menu.style.display = "none";
             } else {
                 menu.style.display = "block";
+            }
+        }
+
+        function toggleInvert() {
+            // Toggle the body's filter property between normal and inverted
+            var body = document.body;
+            if (body.style.filter === "invert(100%)") {
+                body.style.filter = "invert(0%)"; // Normal
+            } else {
+                body.style.filter = "invert(100%)"; // Inverted
             }
         }
     </script>
