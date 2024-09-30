@@ -6,12 +6,22 @@
     <title>Zehr Productions</title>
     <style>
         body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+        }
+        .background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
         }
         .navbar {
             background-color: rgba(0, 0, 0, 0.7);
@@ -20,50 +30,39 @@
             width: 100%;
             z-index: 1000;
         }
-        .menu-icon {
-            color: #00ffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
         #menu-links {
-            display: none;
+            display: flex;
+            justify-content: center;
         }
         #menu-links a {
             color: #00ffff;
             text-decoration: none;
-            display: block;
-            padding: 0.5rem 0;
+            margin: 0 1rem;
             font-size: 1.2rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
         #menu-links a:hover {
             color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+        }
+        .menu-icon {
+            display: none;
+            color: #00ffff;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         .hero {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            opacity: 0.1;
-            z-index: -1;
         }
         .hero h1 {
             font-size: 5rem;
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.5rem;
-            color: #ffffff;
+            color: #00ffff;
             text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
             animation: glitch 5s infinite alternate;
         }
@@ -105,15 +104,39 @@
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #00ffff;
+            border: 1px solid #00ffff;
         }
         .invert-container:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #00ffff;
+            color: #000;
+        }
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+            #menu-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+            #menu-links.active {
+                display: flex;
+            }
+            #menu-links a {
+                margin: 0.5rem 0;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <video autoplay muted loop class="background-video">
+        <source src="background-loop.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <nav class="navbar">
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <div id="menu-links">
@@ -138,7 +161,7 @@
     <script>
         function toggleMenu() {
             var menuLinks = document.getElementById("menu-links");
-            menuLinks.style.display = menuLinks.style.display === "block" ? "none" : "block";
+            menuLinks.classList.toggle("active");
         }
 
         function invertColors() {
