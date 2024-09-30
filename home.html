@@ -137,25 +137,33 @@
         @media (max-width: 768px) {
             .menu-icon {
                 display: block;
+                cursor: pointer;
+                color: #39ff14;
+                font-size: 2rem;
+                margin-left: 15px;
             }
 
             .navbar {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
             }
 
             .navbar a {
-                margin: 10px 0;
+                display: block;
+                margin: 5px 0; /* Add vertical spacing */
                 font-size: 1.2rem;
             }
 
             #menu-links {
                 display: none;
                 flex-direction: column;
+                align-items: flex-start;
+                margin-left: 20px;
             }
 
             #menu-links.show {
-                display: block;
+                display: flex;
+                flex-direction: column; /* Make menu links vertical */
             }
         }
 
