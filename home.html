@@ -15,8 +15,9 @@
         }
         .background-video {
             position: fixed;
-            right: 0;
-            bottom: 0;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             min-width: 100%;
             min-height: 100%;
             width: auto;
@@ -56,10 +57,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         .hero h1 {
             font-size: 5rem;
-            font-family: 'Orbitron', sans-serif;
+            font-family: Arial, sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.5rem;
             color: #00ffff;
@@ -112,6 +114,49 @@
             background-color: #00ffff;
             color: #000;
         }
+        .poison-beaker {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 70px;
+            background: linear-gradient(to bottom, transparent 20%, #00ff00 20%);
+            border: 2px solid #00ffff;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            animation: bubble 3s infinite;
+        }
+        .poison-beaker::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 5px;
+            right: 5px;
+            height: 10px;
+            background: #00ffff;
+            border-radius: 5px 5px 0 0;
+        }
+        @keyframes bubble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .snake {
+            position: fixed;
+            top: 50%;
+            right: -100px;
+            width: 100px;
+            height: 20px;
+            background: linear-gradient(45deg, #00ffff, #00ff00);
+            border-radius: 10px;
+            animation: slither 10s infinite linear;
+        }
+        @keyframes slither {
+            0% { right: -100px; top: 50%; }
+            25% { top: 25%; }
+            50% { right: 100%; top: 75%; }
+            75% { top: 50%; }
+            100% { right: -100px; top: 50%; }
+        }
         @media (max-width: 768px) {
             .menu-icon {
                 display: block;
@@ -129,7 +174,6 @@
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <video autoplay muted loop class="background-video">
@@ -157,6 +201,9 @@
     <div class="invert-container" onclick="invertColors()">
         Invert Colors
     </div>
+
+    <div class="poison-beaker"></div>
+    <div class="snake"></div>
 
     <script>
         function toggleMenu() {
