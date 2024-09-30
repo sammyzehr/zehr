@@ -14,7 +14,7 @@
             text-align: center;
             height: 100vh;
             overflow: hidden;
-            transition: filter 0.3s ease; /* Smooth transition for color inversion */
+            transition: filter 0.3s ease;
         }
 
         /* Fullscreen video styling */
@@ -25,7 +25,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1; /* Ensures the video stays in the background */
+            z-index: -1;
         }
 
         .navbar {
@@ -95,18 +95,18 @@
             }
         }
 
+        /* Soft-edged Invert Button */
         .invert-container {
             position: fixed;
-            bottom: 1rem;
-            right: 1rem;
+            bottom: 20px;
+            right: 20px;
             background-color: rgba(0, 0, 0, 0.7);
-            padding: 0.5rem 1rem;
-            border-radius: 50%; /* Circular button */
+            padding: 10px 20px;
+            border-radius: 15px; /* Soft edges */
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
             color: #00ffff;
             border: 1px solid #00ffff;
-            text-align: center;
             z-index: 1000;
         }
 
@@ -119,6 +119,16 @@
             margin: 0;
             padding: 0;
             font-size: 0.8rem;
+        }
+
+        /* Lottie container for the snake animations */
+        #lottie-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px; /* Adjust height as needed */
+            z-index: 9;
         }
 
         @media (max-width: 768px) {
@@ -145,13 +155,20 @@
                 display: block;
             }
         }
+
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none; /* Hide menu icon on desktop */
+            }
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
 </head>
 <body>
 
     <!-- Background video that plays while on the homepage -->
     <video id="background-video" class="fullscreen-video" autoplay loop muted>
-        <source src="path_to_your_video.mp4" type="video/mp4">
+        <source src="background-loop.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -172,19 +189,32 @@
         <h1>Zehr</h1>
     </div>
 
-    <div class="invert-container" onclick="invertColors()">
+    <!-- Soft-edged rectangle Invert Colors Button -->
+    <div class="invert-container" onclick="toggleInvert()">
         <p>Invert Colors</p>
     </div>
 
+    <!-- Lottie Animation Container for Snake Animation -->
+    <div id="lottie-container"></div>
+
     <script>
         function toggleMenu() {
-            var menuLinks = document.getElementById("menu-links");
-            menuLinks.classList.toggle("show");
+            var menu = document.getElementById("menu-links");
+            menu.classList.toggle("show");
         }
 
-        function invertColors() {
+        function toggleInvert() {
             document.body.style.filter = document.body.style.filter === "invert(100%)" ? "none" : "invert(100%)";
         }
+
+        // Load and play the Lottie snake animation
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-container'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'snake-animation.json' // Make sure this file is available in your project
+        });
     </script>
 
 </body>
