@@ -128,13 +128,14 @@
             position: absolute;
             top: 10px;
             left: 20px;
-            width: 50px; /* Reduced width for smaller size */
-            height: 50px; /* Reduced height for smaller size */
+            width: 50px;
+            height: 50px;
             cursor: pointer;
             z-index: 1500;
         }
 
         @media (max-width: 768px) {
+            /* Adjustments for mobile */
             .menu-icon {
                 display: block;
                 cursor: pointer;
@@ -164,6 +165,17 @@
             #menu-links.show {
                 display: flex;
                 flex-direction: column; /* Make menu links vertical */
+            }
+
+            #lottie-container {
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%); /* Center the snake animation */
+                width: 40px; /* Adjusted size for mobile */
+                height: 40px;
+                cursor: pointer;
+                z-index: 1500;
             }
         }
 
@@ -195,7 +207,7 @@
         </div>
     </nav>
 
-    <!-- Snake animation as clickable logo -->
+    <!-- Snake animation as clickable logo, adjusted for mobile and desktop -->
     <div id="lottie-container" onclick="window.location.href='home.html'"></div>
 
     <div class="hero">
