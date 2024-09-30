@@ -33,6 +33,7 @@
             padding: 15px;
             display: flex;
             justify-content: center;
+            align-items: center; /* Align items vertically */
             position: relative;
             z-index: 1000;
         }
@@ -69,6 +70,7 @@
             color: #00ffff;
             text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
             animation: glitch 5s infinite alternate;
+            margin-top: -50px; /* Move the text upwards */
         }
 
         @keyframes glitch {
@@ -102,7 +104,7 @@
             right: 20px;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 10px 20px;
-            border-radius: 15px; /* Soft edges */
+            border-radius: 15px;
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
             color: #00ffff;
@@ -126,8 +128,8 @@
             position: absolute;
             top: 10px;
             left: 20px;
-            width: 100px;
-            height: 100px;
+            width: 50px; /* Reduced width for smaller size */
+            height: 50px; /* Reduced height for smaller size */
             cursor: pointer;
             z-index: 1500;
         }
@@ -185,6 +187,7 @@
         </div>
     </nav>
 
+    <!-- Snake animation as clickable logo -->
     <div id="lottie-container" onclick="window.location.href='home.html'"></div>
 
     <div class="hero">
@@ -212,7 +215,7 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: 'snake-animation.json' // Make sure this file is available in your project
+            path: 'snake-animation.json' // Ensure this file is in your project directory
         });
     </script>
 
