@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Zehr</title>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,9 +14,10 @@
             text-align: center;
             height: 100vh;
             overflow: hidden;
-            transition: filter 0.3s ease;
+            transition: filter 0.3s ease; /* Smooth transition for color inversion */
         }
 
+        /* Fullscreen video styling */
         video.fullscreen-video {
             position: absolute;
             top: 0;
@@ -24,7 +25,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
+            z-index: -1; /* Ensures the video stays in the background */
         }
 
         .navbar {
@@ -51,68 +52,73 @@
             color: #ff1493;
         }
 
-        h1 {
-            font-family: 'Russo One', sans-serif;
-            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
-            font-size: 3rem;
-            margin: 50px 0;
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
             z-index: 10;
         }
 
-        #menu-links {
-            display: flex;
+        .hero h1 {
+            font-size: 5rem;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            animation: glitch 5s infinite alternate;
         }
 
-        .menu-icon {
-            font-size: 2rem;
-            color: #39ff14;
-            display: none;
-            cursor: pointer;
-            margin-right: 10px;
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 #00ffff, -0.05em -0.025em 0 #ff00ff, -0.025em 0.05em 0 #ffff00;
+            }
+            14% {
+                text-shadow: 0.05em 0 0 #00ffff, -0.05em -0.025em 0 #ff00ff, -0.025em 0.05em 0 #ffff00;
+            }
+            15% {
+                text-shadow: -0.05em -0.025em 0 #00ffff, 0.025em 0.025em 0 #ff00ff, -0.05em -0.05em 0 #ffff00;
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 #00ffff, 0.025em 0.025em 0 #ff00ff, -0.05em -0.05em 0 #ffff00;
+            }
+            50% {
+                text-shadow: 0.025em 0.05em 0 #00ffff, 0.05em 0 0 #ff00ff, 0 -0.05em 0 #ffff00;
+            }
+            99% {
+                text-shadow: 0.025em 0.05em 0 #00ffff, 0.05em 0 0 #ff00ff, 0 -0.05em 0 #ffff00;
+            }
+            100% {
+                text-shadow: -0.025em 0 0 #00ffff, -0.025em -0.025em 0 #ff00ff, -0.025em -0.05em 0 #ffff00;
+            }
         }
 
         .invert-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 50%; /* Circular button */
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #00ffff;
+            border: 1px solid #00ffff;
             text-align: center;
-            z-index: 2000;
+            z-index: 1000;
+        }
+
+        .invert-container:hover {
+            background-color: #00ffff;
+            color: #000;
         }
 
         .invert-container p {
-            font-family: 'Courier New', Courier, monospace;
-            color: #39ff14;
             margin: 0;
-            font-size: 1rem;
-        }
-
-        .invert-button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #39ff14;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            box-shadow: 0 0 10px #39ff14;
-        }
-
-        .invert-button:hover {
-            background-color: #ff1493;
-            color: #fff;
-            box-shadow: 0 0 10px #ff1493;
-        }
-
-        #lottie-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 150px;
-            height: 150px;
-            z-index: 1000;
+            padding: 0;
+            font-size: 0.8rem;
         }
 
         @media (max-width: 768px) {
@@ -140,16 +146,17 @@
             }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
 </head>
 <body>
+
+    <!-- Background video that plays while on the homepage -->
     <video id="background-video" class="fullscreen-video" autoplay loop muted>
-        <source src="background-loop.mp4" type="video/mp4">
+        <source src="path_to_your_video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <div class="navbar">
-        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    <nav class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <div id="menu-links">
             <a href="home.html">Home</a>
             <a href="features.html">Features</a>
@@ -159,44 +166,26 @@
             <a href="events.html">Events</a>
             <a href="fashion.html">Fashion</a>
         </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Zehr</h1>
     </div>
 
-    <h1>Zehr</h1>
-
-    <div class="invert-container">
+    <div class="invert-container" onclick="invertColors()">
         <p>Invert Colors</p>
-        <button class="invert-button" onclick="toggleInvert()"></button>
     </div>
-
-    <div id="lottie-container"></div>
 
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("menu-links");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "block";
-            }
+            var menuLinks = document.getElementById("menu-links");
+            menuLinks.classList.toggle("show");
         }
 
-        function toggleInvert() {
-            var body = document.body;
-            if (body.style.filter === "invert(100%)") {
-                body.style.filter = "invert(0%)";
-            } else {
-                body.style.filter = "invert(100%)";
-            }
+        function invertColors() {
+            document.body.style.filter = document.body.style.filter === "invert(100%)" ? "none" : "invert(100%)";
         }
-
-        // Load and play the Lottie animation
-        var animation = lottie.loadAnimation({
-            container: document.getElementById('lottie-container'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'snake-animation.json' // Replace with the actual path to your downloaded Lottie JSON file
-        });
     </script>
+
 </body>
 </html>
