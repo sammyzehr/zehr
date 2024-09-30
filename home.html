@@ -121,14 +121,15 @@
             font-size: 0.8rem;
         }
 
-        /* Lottie container for the snake animations */
+        /* Lottie container for the snake animation */
         #lottie-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px; /* Adjust height as needed */
-            z-index: 9;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            z-index: 1500;
         }
 
         @media (max-width: 768px) {
@@ -175,7 +176,6 @@
     <nav class="navbar">
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <div id="menu-links">
-            <a href="home.html">Home</a>
             <a href="features.html">Features</a>
             <a href="shorts.html">Shorts</a>
             <a href="shop.html">Shop</a>
@@ -185,6 +185,8 @@
         </div>
     </nav>
 
+    <div id="lottie-container" onclick="window.location.href='home.html'"></div>
+
     <div class="hero">
         <h1>Zehr</h1>
     </div>
@@ -193,9 +195,6 @@
     <div class="invert-container" onclick="toggleInvert()">
         <p>Invert Colors</p>
     </div>
-
-    <!-- Lottie Animation Container for Snake Animation -->
-    <div id="lottie-container"></div>
 
     <script>
         function toggleMenu() {
