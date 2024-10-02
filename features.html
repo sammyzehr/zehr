@@ -62,6 +62,7 @@
             position: relative;
         }
 
+        /* Coming Soon Text Styling */
         .content h1 {
             font-family: 'Righteous', sans-serif;
             text-transform: uppercase;
@@ -69,7 +70,9 @@
             color: #ff1493;
             text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493;
             animation: glitch 5s infinite alternate;
-            margin-top: -60px; /* Move to the top of the page */
+            position: absolute;
+            top: 50px; /* Top center position */
+            margin: 0;
         }
 
         @keyframes glitch {
@@ -122,6 +125,22 @@
             font-size: 0.8rem;
         }
 
+        /* Lottie container for the snake animation */
+        #lottie-container {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 1500;
+            transition: filter 0.3s ease;
+        }
+
+        #lottie-container:hover {
+            filter: invert(100%); /* Invert colors on hover */
+        }
+
         @media (max-width: 768px) {
             .menu-icon {
                 display: block;
@@ -138,7 +157,7 @@
 
             .navbar a {
                 display: block;
-                margin: 5px 0; /* Add vertical spacing */
+                margin: 5px 0;
                 font-size: 1.2rem;
             }
 
@@ -151,13 +170,13 @@
 
             #menu-links.show {
                 display: flex;
-                flex-direction: column; /* Make menu links vertical */
+                flex-direction: column;
             }
         }
 
         @media (min-width: 769px) {
             .menu-icon {
-                display: none; /* Hide menu icon on desktop */
+                display: none;
             }
         }
     </style>
@@ -174,7 +193,6 @@
     <nav class="navbar">
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <div id="menu-links">
-            <a href="home.html">Home</a>
             <a href="shorts.html">Shorts</a>
             <a href="shop.html">Shop</a>
             <a href="radio.html">Radio</a>
@@ -183,12 +201,14 @@
         </div>
     </nav>
 
+    <!-- Snake animation as clickable logo -->
     <div id="lottie-container" onclick="window.location.href='home.html'"></div>
 
     <div class="content">
         <h1>Coming Soon</h1>
     </div>
 
+    <!-- Soft-edged rectangle Invert Colors Button -->
     <div class="invert-container" onclick="toggleInvert()">
         <p>Invert Colors</p>
     </div>
@@ -203,6 +223,7 @@
             document.body.style.filter = document.body.style.filter === "invert(100%)" ? "none" : "invert(100%)";
         }
 
+        // Load and play the Lottie snake animation
         var animation = lottie.loadAnimation({
             container: document.getElementById('lottie-container'),
             renderer: 'svg',
