@@ -74,9 +74,6 @@
             position: absolute;
             top: 50px;
             margin: 0;
-            opacity: 0; /* Initially hidden for scroll effect */
-            transform: translateY(-20px);
-            transition: all 0.6s ease;
         }
 
         .event-description {
@@ -90,22 +87,33 @@
             text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
             width: 60%;
             line-height: 1.6;
-            opacity: 0; /* Initially hidden for scroll effect */
-            transform: translateY(20px);
-            transition: all 0.6s ease;
         }
 
-        /* Countdown Timer Styling */
-        .countdown {
-            margin-top: 50px;
-            color: #00ffff;
-            font-size: 2rem;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-            opacity: 0; /* Initially hidden for scroll effect */
-            transform: translateY(20px);
-            transition: all 0.6s ease;
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 #ff1493, -0.05em -0.025em 0 #39ff14, -0.025em 0.05em 0 #ffff00;
+            }
+            14% {
+                text-shadow: 0.05em 0 0 #ff1493, -0.05em -0.025em 0 #39ff14, -0.025em 0.05em 0 #ffff00;
+            }
+            15% {
+                text-shadow: -0.05em -0.025em 0 #ff1493, 0.025em 0.025em 0 #39ff14, -0.05em -0.05em 0 #ffff00;
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 #ff1493, 0.025em 0.025em 0 #39ff14, -0.05em -0.05em 0 #ffff00;
+            }
+            50% {
+                text-shadow: 0.025em 0.05em 0 #ff1493, 0.05em 0 0 #39ff14, 0 -0.05em 0 #ffff00;
+            }
+            99% {
+                text-shadow: 0.025em 0.05em 0 #ff1493, 0.05em 0 0 #39ff14, 0 -0.05em 0 #ffff00;
+            }
+            100% {
+                text-shadow: -0.025em 0 0 #ff1493, -0.025em -0.025em 0 #39ff14, -0.025em -0.05em 0 #ffff00;
+            }
         }
 
+        /* Soft-edged Invert Button */
         .invert-container {
             position: fixed;
             bottom: 20px;
@@ -145,18 +153,6 @@
 
         #lottie-container:hover {
             filter: invert(100%);
-        }
-
-        /* Map Container */
-        #map {
-            width: 100%;
-            height: 400px;
-            margin: 30px 0;
-            border: 2px solid #00ffff;
-            border-radius: 10px;
-            opacity: 0; /* Initially hidden for scroll effect */
-            transform: translateY(20px);
-            transition: all 0.6s ease;
         }
 
         @media (max-width: 768px) {
@@ -199,7 +195,6 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script> <!-- Replace with your Google Maps API Key -->
 </head>
 <body>
 
@@ -220,15 +215,14 @@
         </div>
     </nav>
 
+    <!-- Snake animation as clickable logo -->
     <div id="lottie-container" onclick="window.location.href='home.html'"></div>
 
     <div class="content">
         <h1>Event Announcement</h1>
         <div class="event-description">
-            We're excited to announce our upcoming launch event on **October 7th, 2024**, at the **QMUL Bloc Gallery**. The event will feature captivating visual projections alongside an interactive section where guests can step in front of the camera and be part of the creative process.
+            We're excited to announce our upcoming launch event on **October 7th, 2024**, at the **QMUL Bloc Gallery**. The event will feature a series of captivating visual projections alongside an interactive section where guests can step in front of the camera and be part of the creative process, capturing stunning visual effects in real time. Join us for an evening of art, technology, and creativity!
         </div>
-        <div id="countdown" class="countdown"></div>
-        <div id="map"></div>
     </div>
 
     <div class="invert-container" onclick="toggleInvert()">
@@ -236,18 +230,15 @@
     </div>
 
     <script>
-        /* Menu Toggle */
         function toggleMenu() {
             var menu = document.getElementById("menu-links");
             menu.classList.toggle("show");
         }
 
-        /* Invert Colors */
         function toggleInvert() {
             document.body.style.filter = document.body.style.filter === "invert(100%)" ? "none" : "invert(100%)";
         }
 
-        /* Load Snake Animation */
         var animation = lottie.loadAnimation({
             container: document.getElementById('lottie-container'),
             renderer: 'svg',
@@ -255,102 +246,6 @@
             autoplay: true,
             path: 'snake-animation.json' // Ensure this file is in your project directory
         });
-
-        /* Countdown Timer */
-        function updateCountdown() {
-            const eventDate = new Date("2024-10-07T00:00:00").getTime();
-            const now = new Date().getTime();
-            const distance = eventDate - now;
-
-            if (distance > 0) {
-                const days = Math.floor
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("countdown").innerHTML = `
-                    <div>Days: ${days}</div>
-                    <div>Hours: ${hours}</div>
-                    <div>Minutes: ${minutes}</div>
-                    <div>Seconds: ${seconds}</div>
-                `;
-            } else {
-                document.getElementById("countdown").innerHTML = "The event is happening now!";
-            }
-        }
-
-        setInterval(updateCountdown, 1000); // Update countdown every second
-
-        /* Scroll Animation Effect */
-        window.addEventListener("scroll", function () {
-            var h1 = document.querySelector(".content h1");
-            var desc = document.querySelector(".event-description");
-            var countdown = document.getElementById("countdown");
-            var map = document.getElementById("map");
-
-            var windowHeight = window.innerHeight;
-
-            if (h1.getBoundingClientRect().top < windowHeight - 100) {
-                h1.style.opacity = 1;
-                h1.style.transform = "translateY(0)";
-            }
-
-            if (desc.getBoundingClientRect().top < windowHeight - 100) {
-                desc.style.opacity = 1;
-                desc.style.transform = "translateY(0)";
-            }
-
-            if (countdown.getBoundingClientRect().top < windowHeight - 100) {
-                countdown.style.opacity = 1;
-                countdown.style.transform = "translateY(0)";
-            }
-
-            if (map.getBoundingClientRect().top < windowHeight - 100) {
-                map.style.opacity = 1;
-                map.style.transform = "translateY(0)";
-            }
-        });
-
-        /* Initialize Google Map */
-        function initMap() {
-            var qmulBlocGallery = { lat: 51.524559, lng: -0.040946 }; // QMUL Bloc Gallery coordinates
-            var map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 15,
-                center: qmulBlocGallery,
-                styles: [
-                    {
-                        featureType: "all",
-                        stylers: [
-                            { saturation: -80 }
-                        ]
-                    },
-                    {
-                        featureType: "road.arterial",
-                        elementType: "geometry",
-                        stylers: [
-                            { hue: "#00ffee" },
-                            { saturation: 50 }
-                        ]
-                    },
-                    {
-                        featureType: "poi.business",
-                        elementType: "labels",
-                        stylers: [
-                            { visibility: "off" }
-                        ]
-                    }
-                ]
-            });
-
-            var marker = new google.maps.Marker({
-                position: qmulBlocGallery,
-                map: map,
-                title: "QMUL Bloc Gallery"
-            });
-        }
-
-        window.onload = initMap; // Load the map on window load
     </script>
 
 </body>
