@@ -1,5 +1,10 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events - Zehr Productions</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Zehr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -7,19 +12,35 @@
             color: #fff;
             margin: 0;
             text-align: center;
+            height: 100vh;
+            overflow: hidden;
+            transition: filter 0.3s ease;
         }
 
-        /* Navigation Bar Styling */
+        /* Fullscreen video styling */
+        video.fullscreen-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
         .navbar {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 15px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1000;
         }
 
         .navbar a {
             margin: 0 15px;
-            color: #39ff14; /* Neon green */
+            color: #39ff14;
             text-decoration: none;
             font-size: 1.5rem;
             font-family: 'Courier New', Courier, monospace;
@@ -29,37 +50,203 @@
         }
 
         .navbar a:hover {
-            color: #ff1493; /* Neon pink on hover */
+            color: #ff1493;
         }
 
-        h1 {
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Event Description Styling */
+        .content h1 {
+            font-family: 'Righteous', sans-serif;
+            text-transform: uppercase;
             font-size: 2.5rem;
-            color: #39ff14;
-            font-family: 'Courier New', Courier, monospace;
-            text-shadow: 0 0 10px #39ff14;
+            color: #ff1493;
+            text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493;
+            animation: glitch 5s infinite alternate;
+            position: absolute;
+            top: 50px;
+            margin: 0;
         }
 
-        p {
+        .event-description {
+            font-family: 'Courier New', Courier, monospace;
             font-size: 1.2rem;
-            line-height: 1.5;
+            color: #39ff14;
+            margin: 100px 50px 0px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+            width: 60%;
+            line-height: 1.6;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 #ff1493, -0.05em -0.025em 0 #39ff14, -0.025em 0.05em 0 #ffff00;
+            }
+            14% {
+                text-shadow: 0.05em 0 0 #ff1493, -0.05em -0.025em 0 #39ff14, -0.025em 0.05em 0 #ffff00;
+            }
+            15% {
+                text-shadow: -0.05em -0.025em 0 #ff1493, 0.025em 0.025em 0 #39ff14, -0.05em -0.05em 0 #ffff00;
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 #ff1493, 0.025em 0.025em 0 #39ff14, -0.05em -0.05em 0 #ffff00;
+            }
+            50% {
+                text-shadow: 0.025em 0.05em 0 #ff1493, 0.05em 0 0 #39ff14, 0 -0.05em 0 #ffff00;
+            }
+            99% {
+                text-shadow: 0.025em 0.05em 0 #ff1493, 0.05em 0 0 #39ff14, 0 -0.05em 0 #ffff00;
+            }
+            100% {
+                text-shadow: -0.025em 0 0 #ff1493, -0.025em -0.025em 0 #39ff14, -0.025em -0.05em 0 #ffff00;
+            }
+        }
+
+        /* Soft-edged Invert Button */
+        .invert-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #00ffff;
+            border: 1px solid #00ffff;
+            z-index: 1000;
+        }
+
+        .invert-container:hover {
+            background-color: #00ffff;
+            color: #000;
+        }
+
+        .invert-container p {
+            margin: 0;
+            padding: 0;
+            font-size: 0.8rem;
+        }
+
+        /* Lottie container for the snake animation */
+        #lottie-container {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 1500;
+            transition: filter 0.3s ease;
+        }
+
+        #lottie-container:hover {
+            filter: invert(100%);
+        }
+
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+                cursor: pointer;
+                color: #39ff14;
+                font-size: 2rem;
+                margin-left: 15px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar a {
+                display: block;
+                margin: 5px 0;
+                font-size: 1.2rem;
+            }
+
+            #menu-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 20px;
+            }
+
+            #menu-links.show {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none;
+            }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <a href="home.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="shorts.html">Shorts</a>
-        <a href="shop.html">Shop</a>
-        <a href="radio.html">Radio</a>
-        <a href="events.html">Events</a>
-        <a href="fashion.html">Fashion</a> <!-- Fashion Link -->
+    <!-- Background video that plays while on the homepage -->
+    <video id="background-video" class="fullscreen-video" autoplay loop muted>
+        <source src="background-loop.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div id="menu-links">
+            <a href="shorts.html">Shorts</a>
+            <a href="shop.html">Shop</a>
+            <a href="radio.html">Radio</a>
+            <a href="features.html">Features</a>
+            <a href="fashion.html">Fashion</a>
+        </div>
+    </nav>
+
+    <!-- Snake animation as clickable logo -->
+    <div id="lottie-container" onclick="window.location.href='home.html'"></div>
+
+    <div class="content">
+        <h1>Event Announcement</h1>
+        <div class="event-description">
+            We're excited to announce our upcoming launch event on **October 7th, 2024**, at the **QMUL Bloc Gallery**. The event will feature a series of captivating visual projections alongside an interactive section where guests can step in front of the camera and be part of the creative process, capturing stunning visual effects in real time. Join us for an evening of art, technology, and creativity!
+        </div>
     </div>
 
-    <h1>Events</h1>
-    <p>This is where the events content will go.</p>
+    <div class="invert-container" onclick="toggleInvert()">
+        <p>Invert Colors</p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu-links");
+            menu.classList.toggle("show");
+        }
+
+        function toggleInvert() {
+            document.body.style.filter = document.body.style.filter === "invert(100%)" ? "none" : "invert(100%)";
+        }
+
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-container'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'snake-animation.json' // Ensure this file is in your project directory
+        });
+    </script>
 
 </body>
 </html>
