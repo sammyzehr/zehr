@@ -17,7 +17,6 @@
             transition: filter 0.3s ease;
         }
 
-        /* Fullscreen video styling */
         video.fullscreen-video {
             position: absolute;
             top: 0;
@@ -63,7 +62,6 @@
             position: relative;
         }
 
-        /* Event Description Styling */
         .content h1 {
             font-family: 'Righteous', sans-serif;
             text-transform: uppercase;
@@ -89,31 +87,13 @@
             line-height: 1.6;
         }
 
-        @keyframes glitch {
-            0% {
-                text-shadow: 0.05em 0 0 #ff1493, -0.05em -0.025em 0 #39ff14, -0.025em 0.05em 0 #ffff00;
-            }
-            14% {
-                text-shadow: 0.05em 0 0 #ff1493, -0.05em -0.025em 0 #39ff14, -0.025em 0.05em 0 #ffff00;
-            }
-            15% {
-                text-shadow: -0.05em -0.025em 0 #ff1493, 0.025em 0.025em 0 #39ff14, -0.05em -0.05em 0 #ffff00;
-            }
-            49% {
-                text-shadow: -0.05em -0.025em 0 #ff1493, 0.025em 0.025em 0 #39ff14, -0.05em -0.05em 0 #ffff00;
-            }
-            50% {
-                text-shadow: 0.025em 0.05em 0 #ff1493, 0.05em 0 0 #39ff14, 0 -0.05em 0 #ffff00;
-            }
-            99% {
-                text-shadow: 0.025em 0.05em 0 #ff1493, 0.05em 0 0 #39ff14, 0 -0.05em 0 #ffff00;
-            }
-            100% {
-                text-shadow: -0.025em 0 0 #ff1493, -0.025em -0.025em 0 #39ff14, -0.025em -0.05em 0 #ffff00;
-            }
+        .countdown {
+            margin-top: 30px;
+            color: #00ffff;
+            font-size: 2rem;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
         }
 
-        /* Soft-edged Invert Button */
         .invert-container {
             position: fixed;
             bottom: 20px;
@@ -139,7 +119,6 @@
             font-size: 0.8rem;
         }
 
-        /* Lottie container for the snake animation */
         #lottie-container {
             position: absolute;
             top: 10px;
@@ -198,7 +177,6 @@
 </head>
 <body>
 
-    <!-- Background video that plays while on the homepage -->
     <video id="background-video" class="fullscreen-video" autoplay loop muted>
         <source src="background-loop.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -215,14 +193,14 @@
         </div>
     </nav>
 
-    <!-- Snake animation as clickable logo -->
     <div id="lottie-container" onclick="window.location.href='home.html'"></div>
 
     <div class="content">
         <h1>Event Announcement</h1>
         <div class="event-description">
-            We're excited to announce our upcoming launch event on **October 7th, 2024**, at the **QMUL Bloc Gallery**. The event will feature a series of captivating visual projections alongside an interactive section where guests can step in front of the camera and be part of the creative process, capturing stunning visual effects in real time. Join us for an evening of art, technology, and creativity!
+            We're excited to announce our upcoming launch event on <strong>Sunday 13th October 2024</strong>, at the <strong>QMUL Bloc Gallery</strong>. The event will feature a series of captivating visual projections alongside an interactive section where guests can step in front of the camera and be part of the creative process, capturing stunning visual effects in real time. Join us for an evening of art, technology, and creativity!
         </div>
+        <div id="countdown" class="countdown"></div>
     </div>
 
     <div class="invert-container" onclick="toggleInvert()">
@@ -244,8 +222,33 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: 'snake-animation.json' // Ensure this file is in your project directory
+            path: 'snake-animation.json' 
         });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date("2024-10-13T00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = `
+                    <div>Days: ${days}</div>
+                    <div>Hours: ${hours}</div>
+                    <div>Minutes: ${minutes}</div>
+                    <div>Seconds: ${seconds}</div>
+                `;
+            } else {
+                document.getElementById("countdown").innerHTML = "The event is happening now!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Update countdown every second
     </script>
 
 </body>
