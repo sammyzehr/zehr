@@ -89,7 +89,7 @@
 
         .countdown {
             position: absolute;
-            top: 75px; /* Adjusted position to place it below the navbar */
+            top: 75px;
             right: 20px;
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #39ff14;
@@ -106,17 +106,6 @@
             margin: 5px 0;
         }
 
-        @keyframes neonGlow {
-            0% {
-                text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 40px #ff1493;
-                border-color: #39ff14;
-            }
-            100% {
-                text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493, 0 0 60px #ff1493;
-                border-color: #ff1493;
-            }
-        }
-
         #lottie-container {
             position: absolute;
             top: 10px;
@@ -130,6 +119,96 @@
 
         #lottie-container:hover {
             filter: invert(100%);
+        }
+
+        @keyframes neonGlow {
+            0% {
+                text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 40px #ff1493;
+                border-color: #39ff14;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493, 0 0 60px #ff1493;
+                border-color: #ff1493;
+            }
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #39ff14;
+            font-size: 2rem;
+            margin-left: 15px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1500;
+        }
+
+        #menu-links {
+            display: flex;
+            justify-content: center;
+        }
+
+        #menu-links.show {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            .navbar a {
+                display: none; /* Hide all links on mobile */
+            }
+
+            #menu-links {
+                display: none; /* Hide the menu links by default on mobile */
+                position: absolute;
+                top: 60px;
+                left: 20px;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            #menu-links a {
+                display: block;
+                margin: 5px 0;
+                font-size: 1.2rem;
+            }
+
+            .menu-icon {
+                display: block; /* Show menu icon on mobile */
+            }
+
+            #lottie-container {
+                top: 5px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 40px;
+            }
+
+            .countdown {
+                top: 120px; /* Move countdown lower on mobile */
+                right: 20px;
+                font-size: 1.2rem; /* Adjust countdown size */
+            }
+
+            .event-description {
+                width: 90%; /* Adjust width for mobile */
+                font-size: 1rem; /* Adjust font size for mobile */
+            }
+
+            .content h1 {
+                font-size: 1.8rem; /* Adjust heading size for mobile */
+                top: 20px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none; /* Hide menu icon on desktop */
+            }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
@@ -199,7 +278,8 @@
             }
         }
 
-        setInterval(updateCountdown, 1000);
+        setInterval(updateCountdown, 1000); // Update countdown every second
+        updateCountdown(); // Initial call to display the countdown immediately
     </script>
 
 </body>
