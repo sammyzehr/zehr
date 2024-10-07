@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events - Zehr</title>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet"> <!-- Retro font -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -88,10 +88,33 @@
         }
 
         .countdown {
-            margin-top: 30px;
-            color: #00ffff;
-            font-size: 2rem;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #39ff14;
+            padding: 10px 20px;
+            border-radius: 15px;
+            color: #39ff14;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+            animation: neonGlow 1.5s infinite alternate;
+        }
+
+        .countdown div {
+            margin: 5px 0;
+        }
+
+        @keyframes neonGlow {
+            0% {
+                text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 40px #ff1493;
+                border-color: #39ff14;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493, 0 0 60px #ff1493;
+                border-color: #ff1493;
+            }
         }
 
         .invert-container {
@@ -198,10 +221,12 @@
     <div class="content">
         <h1>Event Announcement</h1>
         <div class="event-description">
-            We're excited to announce our upcoming launch event on <strong>Sunday 13th October 2024</strong>, at the <strong>QMUL Bloc Gallery</strong>. The event will feature a series of captivating visual projections alongside an interactive section where guests can step in front of the camera and be part of the creative process, capturing stunning visual effects in real time. Join us for an evening of art, technology, and creativity!
+            We're excited to announce our upcoming launch event on <strong>13th Sunday October 2024</strong>, at the <strong>QMUL Bloc Gallery</strong>. The event will feature a series of captivating visual projections alongside an interactive section where guests can step in front of the camera and be part of the creative process, capturing stunning visual effects in real time.
         </div>
-        <div id="countdown" class="countdown"></div>
     </div>
+
+    <!-- Retro-styled Countdown Timer -->
+    <div id="countdown" class="countdown"></div>
 
     <div class="invert-container" onclick="toggleInvert()">
         <p>Invert Colors</p>
@@ -222,10 +247,9 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: 'snake-animation.json' 
+            path: 'snake-animation.json'
         });
 
-        // Countdown Timer
         function updateCountdown() {
             const eventDate = new Date("2024-10-13T00:00:00").getTime();
             const now = new Date().getTime();
@@ -234,21 +258,24 @@
             if (distance > 0) {
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 *
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 document.getElementById("countdown").innerHTML = `
-                    <div>Days: ${days}</div>
-                    <div>Hours: ${hours}</div>
-                    <div>Minutes: ${minutes}</div>
-                    <div>Seconds: ${seconds}</div>
+                    <div><strong>Days:</strong> ${days}</div>
+                    <div><strong>Hours:</strong> ${hours}</div>
+                    <div><strong>Minutes:</strong> ${minutes}</div>
+                    <div><strong>Seconds:</strong> ${seconds}</div>
                 `;
             } else {
-                document.getElementById("countdown").innerHTML = "The event is happening now!";
+                document.getElementById("countdown").innerHTML = "<div>🚀 The event is happening now! 🚀</div>";
             }
         }
 
         setInterval(updateCountdown, 1000); // Update countdown every second
+
+        updateCountdown(); // Initial call to display the countdown immediately
     </script>
 
 </body>
