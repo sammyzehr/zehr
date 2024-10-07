@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shorts - Zehr</title>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,6 +14,17 @@
             text-align: center;
             height: 100vh;
             overflow: hidden;
+            transition: filter 0.3s ease;
+        }
+
+        video.fullscreen-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
 
         .navbar {
@@ -21,6 +32,7 @@
             padding: 15px;
             display: flex;
             justify-content: center;
+            align-items: center;
             position: relative;
             z-index: 1000;
         }
@@ -40,79 +52,209 @@
             color: #ff1493;
         }
 
-        .coming-soon {
-            font-family: 'Russo One', sans-serif;
-            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 10;
+            position: relative;
+        }
+
+        .content h1 {
+            font-family: 'Righteous', sans-serif;
+            text-transform: uppercase;
             font-size: 2.5rem;
             color: #ff1493;
-            margin: 20px 0;
+            text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493;
+            animation: glitch 5s infinite alternate;
+            position: absolute;
+            top: 50px;
+            margin: 0;
+        }
+
+        .countdown {
+            position: absolute;
+            top: 75px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #39ff14;
+            padding: 10px 20px;
+            border-radius: 15px;
+            color: #39ff14;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+            animation: neonGlow 1.5s infinite alternate;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .countdown:hover {
+            filter: invert(100%);
+            border-color: #ff1493;
+        }
+
+        .countdown div {
+            margin: 5px 0;
+        }
+
+        @keyframes neonGlow {
+            0% {
+                text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 40px #ff1493;
+                border-color: #39ff14;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493, 0 0 60px #ff1493;
+                border-color: #ff1493;
+            }
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #39ff14;
+            font-size: 2rem;
+            margin-left: 15px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1500;
         }
 
         #menu-links {
             display: flex;
+            justify-content: center;
         }
 
-        .menu-icon {
-            font-size: 2rem;
-            color: #39ff14;
-            display: none;
-            cursor: pointer;
-            margin-right: 10px;
+        #menu-links.show {
+            display: flex;
+            flex-direction: column;
         }
 
         @media (max-width: 768px) {
-            .menu-icon {
-                display: block;
-            }
-
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-            }
-
             .navbar a {
-                margin: 10px 0;
-                font-size: 1.2rem;
+                display: none; /* Hide all links on mobile */
             }
 
             #menu-links {
-                display: none;
+                display: none; /* Hide the menu links by default on mobile */
+                position: absolute;
+                top: 60px;
+                left: 20px;
                 flex-direction: column;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 10px;
+                border-radius: 10px;
             }
 
-            #menu-links.show {
+            #menu-links a {
                 display: block;
+                margin: 5px 0;
+                font-size: 1.2rem;
+            }
+
+            .menu-icon {
+                display: block; /* Show menu icon on mobile */
+            }
+
+            #lottie-container {
+                top: 5px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 40px;
+            }
+
+            .countdown {
+                top: 120px; /* Move countdown lower on mobile */
+                right: 20px;
+                font-size: 1.2rem; /* Adjust countdown size */
+            }
+
+            .content h1 {
+                font-size: 1.8rem; /* Adjust heading size for mobile */
+                top: 20px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none; /* Hide menu icon on desktop */
             }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
 </head>
 <body>
 
-    <div class="navbar">
-        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    <video id="background-video" class="fullscreen-video" autoplay loop muted>
+        <source src="background-loop.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <div id="menu-links">
             <a href="home.html">Home</a>
-            <a href="features.html">Features</a>
-            <a href="shorts.html">Shorts</a>
             <a href="shop.html">Shop</a>
             <a href="radio.html">Radio</a>
-            <a href="events.html">Events</a>
+            <a href="features.html">Features</a>
             <a href="fashion.html">Fashion</a>
         </div>
+    </nav>
+
+    <div id="lottie-container" onclick="window.location.href='home.html'"></div>
+
+    <div class="content">
+        <h1>Coming Soon</h1>
     </div>
 
-    <!-- Coming Soon Tag -->
-    <div class="coming-soon">Coming Soon</div>
+    <div id="countdown" class="countdown" onclick="window.location.href='events.html'">
+        <div><strong>Days:</strong> --</div>
+        <div><strong>Hours:</strong> --</div>
+        <div><strong>Minutes:</strong> --</div>
+        <div><strong>Seconds:</strong> --</div>
+    </div>
 
     <script>
         function toggleMenu() {
             var menu = document.getElementById("menu-links");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
+            menu.classList.toggle("show");
+        }
+
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-container'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'snake-animation.json'
+        });
+
+        function updateCountdown() {
+            const eventDate = new Date("2024-10-13T00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = `
+                    <div><strong>Days:</strong> ${days}</div>
+                    <div><strong>Hours:</strong> ${hours}</div>
+                    <div><strong>Minutes:</strong> ${minutes}</div>
+                    <div><strong>Seconds:</strong> ${seconds}</div>
+                `;
             } else {
-                menu.style.display = "block";
+                document.getElementById("countdown").innerHTML = "<div>🚀 The event is happening now! 🚀</div>";
             }
         }
+
+        setInterval(updateCountdown, 1000);
     </script>
 
 </body>
